@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio interativo simulando uma biblioteca de repositórios do GitHub.">
+    <title>A Grande Biblioteca | Portfólio</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/book.css">
+</head>
+<body>
+
+    <header class="library-header">
+        <h1>Acervo de Projetos</h1>
+        <p>Explore meus repositórios como se fossem tomos antigos.</p>
+        
+        <div class="pergaminho-btn" id="btn-pergaminho">
+            Consultar Pergaminho Futhark
+        </div>
+
+        <nav id="language-filters" class="filters-container" aria-label="Filtro de linguagens"></nav>
+    </header>
+
+    <main>
+        <section id="portfolio-shelf" class="bookshelf" aria-label="Estante de repositórios do GitHub">
+            </section>
+    </main>
+
+    <template id="book-template">
+    <article class="book" tabindex="0">
+        <div class="face face-front">
+            <span class="spine-rune" data-book-rune></span>
+            <span class="spine-title" data-book-title></span>
+        </div>
+        
+        <div class="face face-right">
+            <h3 data-book-title></h3>
+            <p data-book-desc></p>
+            <div class="book-meta">
+                <span class="lang-badge" data-book-lang style="display: none;"></span>
+            </div>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="btn-repo" data-book-link>Ler Tomo</a>
+        </div>
+        
+        <div class="face face-left"></div>
+        <div class="face face-back"></div>
+        <div class="face face-top"></div>
+        <div class="face face-bottom"></div>
+    </article>
+    </template>
+
+    <div id="modal-futhark" class="modal-overlay">
+        <div class="modal-content">
+            <button id="btn-close-modal" class="close-modal">&times;</button>
+            <img src="/assets/17824166948752.webp" alt="Tabela de Tradução Futhark" class="futhark-img">
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+
+</body>
+</html>

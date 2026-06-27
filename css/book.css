@@ -1,0 +1,158 @@
+/* --- A CAIXA PRINCIPAL --- */
+.book {
+    width: var(--book-thickness);
+    height: var(--book-height);
+    position: relative;
+    transform-style: preserve-3d;
+    transform-origin: left center; 
+    transform: translate3d(0, 0, 0) rotateY(0deg);
+    z-index: 1;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), z-index 0s linear 0.4s;
+    cursor: pointer;
+}
+
+/* --- A PONTE DE INTERAÇÃO (Escudo anti-travamento) --- */
+.book::before {
+    content: '';
+    position: absolute;
+    top: -20px; bottom: -20px; left: -20px; right: -80px; 
+    transform: translateZ(1px); 
+    pointer-events: none; 
+}
+
+.book:hover::before, .book:focus-within::before {
+    pointer-events: auto; 
+}
+
+.book:hover, .book:focus-within {
+    transform: translate3d(0px, -20px, 140px) rotateY(-65deg);
+    z-index: 100;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), z-index 0s linear 0s;
+    outline: none;
+}
+
+/* --- AS 6 FACES DA CAIXA --- */
+.face {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    pointer-events: none; 
+}
+
+/* 1. LOMBADA (Frente) */
+.face-front {
+    width: var(--book-thickness);
+    height: var(--book-height);
+    transform: translate3d(0, 0, 0); 
+    pointer-events: auto; 
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; 
+    
+    background: linear-gradient(to right, #150629, var(--dark-purple));
+    border-left: 2px solid var(--neon-purple);
+    border-radius: 3px 0 0 3px;
+}
+
+.spine-rune {
+    font-size: 1.2rem;
+    color: var(--neon-purple);
+    text-shadow: 0 0 5px var(--neon-purple);
+}
+
+.spine-title {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 70%;
+}
+
+/* 2. CAPA (Lado Direito) */
+.face-right {
+    width: var(--book-width);
+    height: var(--book-height);
+    transform-origin: left;
+    transform: translate3d(var(--book-thickness), 0, 0) rotateY(90deg); 
+    
+    background: linear-gradient(145deg, #1f0b3b, var(--dark-purple));
+    border: 1px solid rgba(157, 78, 221, 0.3);
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: inset 4px 0 15px rgba(0,0,0,0.6);
+}
+
+.book:hover .face-right,
+.book:focus-within .face-right {
+    pointer-events: auto;
+}
+
+.face-right h3 { font-size: 1.1rem; color: #fff; text-shadow: 0 0 5px var(--neon-purple); margin-bottom: 10px; line-height: 1.2; }
+.face-right p { font-size: 0.8rem; color: var(--text-muted); flex-grow: 1; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
+
+.btn-repo {
+    display: inline-block;
+    padding: 8px 10px;
+    background: transparent;
+    color: var(--neon-purple);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border: 1px solid var(--neon-purple);
+    border-radius: 4px;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    margin-top: auto;
+}
+.btn-repo:hover { background: var(--neon-purple); color: #fff; box-shadow: 0 0 15px var(--neon-purple); }
+
+/* 3. CONTRA-CAPA (Lado Esquerdo) */
+.face-left {
+    width: var(--book-width);
+    height: var(--book-height);
+    transform-origin: left;
+    transform: translate3d(0, 0, calc(var(--book-width) * -1)) rotateY(-90deg);
+    background: linear-gradient(145deg, #11051f, #1a082e);
+    border: 1px solid rgba(157, 78, 221, 0.1);
+}
+
+/* 4. FUNDO DO LIVRO */
+.face-back {
+    width: var(--book-thickness);
+    height: var(--book-height);
+    transform: translate3d(0, 0, calc(var(--book-width) * -1)) rotateY(180deg);
+    background: linear-gradient(to right, #231633, var(--page-color));
+}
+
+/* 5. TOPO (Parte de cima do livro) */
+.face-top {
+    width: var(--book-thickness);
+    height: var(--book-width);
+    transform-origin: top;
+    transform: rotateX(-90deg); 
+    background: var(--page-color);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* 6. BASE (Parte de baixo do livro) */
+.face-bottom {
+    width: var(--book-thickness);
+    height: var(--book-width);
+    top: auto; 
+    bottom: 0;
+    transform-origin: bottom;
+    transform: rotateX(90deg); 
+    background: var(--page-color);
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+}

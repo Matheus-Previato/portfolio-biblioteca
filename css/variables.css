@@ -1,0 +1,18 @@
+:root {
+    /* Dimensões da caixa do livro */
+    --book-width: 150px;
+    --book-height: 220px;
+    --book-thickness: 30px;
+
+    /* Cores principais */
+    --bg-void: #0a0612; 
+    --shelf-glass: rgba(25, 10, 40, 0.8); 
+    --neon-purple: #9d4edd; 
+    --dark-purple: #240046; 
+    --deep-shadow: #030105;
+    --text-light: #f3e8ff;
+    --text-muted: #c7b6df;
+    
+    /* Cor que simula as folhas de papel na lateral */
+    --page-color: #170d24; 
+}
